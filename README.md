@@ -30,7 +30,6 @@ English | [简体中文](https://github.com/yunying1/jokerTree)
 ```
 
 </div>
-
 `If this project is helpful to you, please give us a 🤡Star thanks!`
 
 ## Installation
