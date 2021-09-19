@@ -107,3 +107,5 @@ let ast1 = {
 > This version is fully embracing AST
 
 This version has implemented the conversion from Object to AST and the conversion of AST to DOM, In addition, the DOM has rendered on the page.
+
+You should initialize your JSON string in the `index.js` file `let data`.
