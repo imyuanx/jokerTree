@@ -43,3 +43,62 @@ $ npm run start
 ```
 
 
+## Object -> AST
+
+```
+let obj1 = {
+    a: "1",
+    b: 2,
+    c: {
+        d: [
+            true,
+        ]
+    }
+};
+
+let ast1 = {
+    type: "object",
+    key: "",
+    path: "",
+    dataValue: '{"a":"1","b":2,"c":{"d":[true]}}',
+    value: [
+        {
+            type: "string",
+            key: "a",
+            path: '["a"]',
+            dataValue: "1",
+            value: "1",
+        },
+        {
+            type: "number",
+            key: "b",
+            path: '["b"]',
+            dataValue: "2",
+            value: 2,
+        },
+        {
+            type: "object",
+            key: "c",
+            path: '["c"]',
+            dataValue: '{"d":[true]}',
+            value: [
+                {
+                    type: "array",
+                    key: "d",
+                    path: '["c"]["d"]',
+                    dataValue: "[true]",
+                    value: [
+                        {
+                            type: "boolean",
+                            key: 0,
+                            path: '["c"]["d"][0]',
+                            dataValue: "true",
+                            value: true,
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}
+```
