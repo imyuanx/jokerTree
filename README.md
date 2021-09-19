@@ -30,7 +30,7 @@ English | [简体中文](https://github.com/yunying1/jokerTree)
 ```
 
 </div>
-`If this project is helpful to you, please give us a 🤡Star thanks!`
+If this project is helpful to you, please give us a 🤡Star thanks!
 
 ## Installation
 ```
@@ -102,3 +102,8 @@ let ast1 = {
     ],
 }
 ```
+
+## v1.0
+> This version is fully embracing AST
+
+This version has implemented the conversion from Object to AST and the conversion of AST to DOM, In addition, the DOM has rendered on the page.
