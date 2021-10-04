@@ -46,7 +46,7 @@ $ npm run start
 ## Object -> AST
 
 ```
-let obj1 = {
+let obj = {
     a: "1",
     b: 2,
     c: {
@@ -56,7 +56,7 @@ let obj1 = {
     }
 };
 
-let ast1 = {
+let ast = {
     type: "object",
     key: "",
     path: "",

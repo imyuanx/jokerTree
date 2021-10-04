@@ -1,4 +1,4 @@
-import createDom from "./createDom";
+import createDomTree from "./createDomTree";
 
 /**
  * @author YX
@@ -6,7 +6,7 @@ import createDom from "./createDom";
  * @param {Object} astTree 
  */
 function patch(container, astTree){
-    let domList = createDom(astTree);
+    let domList = createDomTree(astTree);
     domList.map((item) => {
         container.append(item);
     });

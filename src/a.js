@@ -12,7 +12,7 @@ function a(obj, key, path) {
     let type = getType(obj);
     let dataValue = JSON.stringify(obj);
     let value = obj;
-    switch(type){
+    switch(type) {
         case "object":
             value = [];
             for(let key in obj){

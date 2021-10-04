@@ -1,0 +1,35 @@
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.expand-symbol {
+    color: green;
+    border: 1px solid green;
+    background-color: white;
+    text-align: center;
+    line-height: 12px;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    margin-right: 6px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.3s;
+}
+.expand-symbol:hover {
+    box-shadow: 1px 1px 5px -2px rgba(0, 128, 0, 0.8);
+}
+.type-symbol {
+    margin-right: 6px;
+    color: green;
+}
+.key {
+    color: red;
+}
+.link-symbol {
+    color: green;
+}
+.value {
+    color: blue;
+}

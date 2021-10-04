@@ -1,5 +1,6 @@
 /**
  * @author YX
+ * @desc create ast node
  * @param {String} type 
  * @param {String|Number} key 
  * @param {String} path 
@@ -8,7 +9,7 @@
  * @returns {Object}
  */
 function ast(type, key, path, dataValue, value) {
-    return { type, key, path, dataValue, value};
+    return { type, key, path, dataValue, value };
 }
 
 export default ast;
