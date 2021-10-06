@@ -1,10 +1,5 @@
-import domNode from "./domNode";
-import createKeyDom from "./createKeyDom";
-import createValueDom from "./createValueDom";
-import createExpandDom from "./createExpandDom";
-import createPrefixDom from "./createPrefixDom";
-import createLinkDom from "./createLinkDom";
-import createTypeDom from "./createTypeDom";
+import createNodesBoxDom from "./createElementsDom/createNodesboxDom";
+import createNodeElementDom from "./createElementsDom/createNodeelementDom";
 
 /**
  * @author YX
@@ -13,47 +8,21 @@ import createTypeDom from "./createTypeDom";
  * @returns {Array}
  */
 function createDomTree(astNode, layer = 0){
-    let childDom = [];
-    let domTree = domNode("div", {
-        "data-key": astNode.key,
-        "data-path": astNode.path,
-        "data-dataValue": astNode.dataValue,
-    });
-    domTree.className = "row";
-
-    let prefixDom = createPrefixDom(layer);
-    domTree.appendChild(prefixDom);
-
-    let keyDom = createKeyDom(astNode.key, layer);
-    domTree.appendChild(keyDom);
-
-    if (layer > 0 && astNode.type !== "object" && astNode.type !== "array") domTree.appendChild(createLinkDom());
-
-    if (astNode.key === "" || astNode.type == "object" || astNode.type == "array") {
-        let expandDom = createExpandDom();
-        domTree.insertBefore(expandDom, keyDom);
-        let typeDom = createTypeDom(astNode.type);
-        domTree.insertBefore(typeDom, keyDom);
-
-        if (astNode.type == "array") {
-            astNode.value.map((item) => {
-                let childDomItem = createDomTree(item, layer + 1);
-                childDom = [...childDom, ...childDomItem];
-            });
-        } else {
-            for (const key in astNode.value) {
-                if (Object.hasOwnProperty.call(astNode.value, key)) {
-                    const item = astNode.value[key];
-                    let childDomItem = createDomTree(item, layer + 1);
-                    childDom = [...childDom, ...childDomItem];
-                }
-            }
+    let nodesBoxDom = createNodesBoxDom(astNode.type);
+    let nodeElementDom;
+    if (astNode.type == "object" || astNode.type == "array") {
+        nodesBoxDom.appendChild(createNodeElementDom(astNode.key, astNode.path, astNode.dataValue, astNode.value, astNode.type, layer));
+        nodeElementDom = createNodesBoxDom(astNode.type, layer);
+        let layers = layer + 1;
+        for (let i = 0; i < astNode.value.length; i++) {
+            const element = astNode.value[i];
+            nodeElementDom.appendChild(createDomTree(element, layers));
         }
     } else {
-        let valueDom = createValueDom(astNode.value);
-        domTree.appendChild(valueDom);
+        nodeElementDom = createNodeElementDom(astNode.key, astNode.path, astNode.dataValue, astNode.value, astNode.type, layer);
     }
+    nodesBoxDom.appendChild(nodeElementDom);
     
-    return [domTree, ...childDom];
+    return nodesBoxDom;
 }
 export default createDomTree;

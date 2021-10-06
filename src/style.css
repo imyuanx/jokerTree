@@ -2,11 +2,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    cursor: pointer;
+}
+.row-select {
+    background-color: #ebebeb7a;
 }
 .expand-symbol {
     color: green;
     border: 1px solid green;
-    background-color: white;
+    background-color: transparent;
     text-align: center;
     line-height: 12px;
     width: 12px;
@@ -21,7 +25,7 @@
     box-shadow: 1px 1px 5px -2px rgba(0, 128, 0, 0.8);
 }
 .type-symbol {
-    margin-right: 6px;
+    width: 16px;
     color: green;
 }
 .key {
@@ -32,4 +36,10 @@
 }
 .value {
     color: blue;
+}
+.hide {
+    display: none;
+}
+.alignLeft {
+    margin-left: 34px;
 }

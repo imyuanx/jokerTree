@@ -6,9 +6,7 @@ import createDomTree from "./createDomTree";
  * @param {Object} astTree 
  */
 function patch(container, astTree){
-    let domList = createDomTree(astTree);
-    domList.map((item) => {
-        container.append(item);
-    });
+    let domTree = createDomTree(astTree);
+    container.append(domTree);
 }
 export default patch;

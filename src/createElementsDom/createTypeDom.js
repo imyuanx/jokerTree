@@ -1,4 +1,4 @@
-import domNode from "./domNode";
+import domNode from "../domNode";
 
 /**
  * @author YX

@@ -5,7 +5,7 @@
  * @param {Object} options element attribute
  * @returns {HTMLElement}
  */
-function domNode(sel = "div", options = {}){
+function domNode(sel = "div", options = {}) {
     let dom = document.createElement(sel);
     for (const key in options) {
         if (Object.hasOwnProperty.call(options, key)) {
