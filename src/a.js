@@ -1,34 +1,35 @@
-import ast from "./astnode";
+import ast from "./astNode";
+import getType from "./getType";
 /**
  * @author YX
  * @desc This function is used to create AST
- * @param {Number} layer node is located in the order
- * @param {String} path node is located in the path
- * @param {Object} object JSON object
- * @returns {Object|Object[Array]}
+ * @param {Object} obj JSON object
+ * @param {String|Number} key 
+ * @param {String} path 
+ * @returns {Object}
  */
-function a(layer, path, object) {
-    let domTree = [];
-    for (const key in object) {
-        if (Object.hasOwnProperty.call(object, key)) {
-            const value = object[key];
-            let domItem;
-            let nodePath = path + "[\"" + key + "\"]";
-            if (typeof value == "object") {
-                let dataValue = JSON.stringify(value);
-                let type = Array.isArray(value) ? "array" : "object";
-                domItem = ast(key, a(layer + 1, nodePath, value), dataValue, type, layer, nodePath);
-            } else {
-                domItem = ast(key, value, value, typeof value, layer, nodePath);
-            }
-            domTree.push(domItem);
+function a(obj, key, path) {
+    let type = getType(obj);
+    let dataValue = JSON.stringify(obj);
+    let value = obj;
+    if (type == "object") {
+        value = [];
+        for(let key in obj) {
+            let oItem = obj[key];
+            let astNodeItem = a(oItem, key, path + `["${key}"]`);
+            value.push(astNodeItem);
         }
+    } else if (type == "array") {
+        value = [];
+        obj.map((oItem, index) => {
+            let astNodeItem = a(oItem, index, path + `[${index}]`);
+            value.push(astNodeItem);
+        });
+    } else {
+        dataValue = obj + "";
     }
-    if (layer == 0) {
-        return ast("_root", domTree, JSON.stringify(domTree), "array", layer, "");
-    }
-    
-    return domTree;
+    let astNode = ast(type, key, path, dataValue, value);
+    return astNode;
 }
 
 export default a;

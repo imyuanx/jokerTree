@@ -30,7 +30,7 @@ English | [简体中文](https://github.com/yunying1/jokerTree)
 ```
 
 </div>
-`If this project is helpful to you, please give us a 🤡Star thanks!`
+If this project is helpful to you, please give us a 🤡Star thanks!
 
 ## Installation
 ```
@@ -43,3 +43,69 @@ $ npm run start
 ```
 
 
+## Object -> AST
+
+```
+let obj = {
+    a: "1",
+    b: 2,
+    c: {
+        d: [
+            true,
+        ]
+    }
+};
+
+let ast = {
+    type: "object",
+    key: "",
+    path: "",
+    dataValue: '{"a":"1","b":2,"c":{"d":[true]}}',
+    value: [
+        {
+            type: "string",
+            key: "a",
+            path: '["a"]',
+            dataValue: "1",
+            value: "1",
+        },
+        {
+            type: "number",
+            key: "b",
+            path: '["b"]',
+            dataValue: "2",
+            value: 2,
+        },
+        {
+            type: "object",
+            key: "c",
+            path: '["c"]',
+            dataValue: '{"d":[true]}',
+            value: [
+                {
+                    type: "array",
+                    key: "d",
+                    path: '["c"]["d"]',
+                    dataValue: "[true]",
+                    value: [
+                        {
+                            type: "boolean",
+                            key: 0,
+                            path: '["c"]["d"][0]',
+                            dataValue: "true",
+                            value: true,
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+}
+```
+
+## v1.0
+> This version is fully embracing AST
+
+This version has implemented the conversion from Object to AST and the conversion of AST to DOM, In addition, the DOM has rendered on the page.
+
+You should initialize your JSON string in the `index.js` file `let data`.

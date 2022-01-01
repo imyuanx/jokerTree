@@ -1,14 +1,14 @@
 import a from "./a";
+import parse from "./parse";
 import patch from "./patch";
+import "./style.css";
+
 let container = document.getElementById("app");
-
-let data = `{"a":1,"b":{"c":2,"d":[3,"4",{"e":"5","f":[],"g":{}}]}}`;
-data = JSON.parse(data);
-let astTree = a(0, "", data);
-console.log(astTree);
-
-astTree.value.map((item)=>{
-    
-});
-
-// patch(container, vNode);
+let data = `{"a":"1","b":2,"c":{"d":[true, []]}}`;
+try {
+    data = parse(data);
+} catch {
+    console.error("JSON string format error");
+}
+let astTree = a(data, "", "");
+patch(container, astTree);
